@@ -21,10 +21,12 @@ const swaggerOptions = {
         },
         servers: [
             {
-                url: 'https://api-estoque-lbkz.onrender.com', 
+                url: 'https://api-estoque-lbkz.onrender.com',
+                description: 'Servidor de Produção (Render)',
             },
             {
                 url: 'http://localhost:3000',
+                description: 'Servidor Local (Desenvolvimento)',
             },
         ],
         components: {
@@ -46,6 +48,16 @@ app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(specs));
 // --- 3. ROTAS ---
 app.use('/auth', authRoutes);
 app.use('/produtos', produtoRoutes);
+
+/**
+ * @swagger
+ * /:
+ *   get:
+ *     summary: Redireciona para a documentação do Swagger
+ */
+app.get('/', (req, res) => {
+    res.redirect('/api-docs');
+});
 
 /**
  * @swagger
