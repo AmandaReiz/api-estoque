@@ -21,6 +21,9 @@ const swaggerOptions = {
         },
         servers: [
             {
+                url: 'https://api-estoque-lbkz.onrender.com', 
+            },
+            {
                 url: 'http://localhost:3000',
             },
         ],
@@ -58,8 +61,7 @@ app.get('/status', (req, res) => {
 });
 
 // --- 4. INICIAR O SERVIDOR ---
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`);
-    console.log(`Swagger disponível em http://localhost:${PORT}/api-docs`);
 });
